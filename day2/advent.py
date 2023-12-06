@@ -13,9 +13,16 @@ inputFile.close()
 
 
 #MAIN SECTION
-sum = 0
+possibleGames = 0
+sumOfPowers = 0
 
 for i in range(len(inputTxt)):
+    minimums = {
+        'red' : 0,
+        'blue' : 0,
+        'green' : 0
+    }
+
     isPossible = True
     line = inputTxt[i].strip()
     data = line.split(':')[1].strip()               #variable data contains info for every pull
@@ -27,7 +34,18 @@ for i in range(len(inputTxt)):
             color = atom.split()[1]
             if(number > MAXIMUMS[color]):
                 isPossible = False
+            if(number > minimums[color]):
+                minimums[color] = number
 
-    sum += (i + 1) * isPossible
+    #update sums
+    #pt 1
+    possibleGames += (i + 1) * isPossible
 
-print(sum)
+    #pt 2
+    power = 1
+    for multiplier in minimums.values():
+        power *= multiplier
+    sumOfPowers += power
+
+print(possibleGames)
+print(sumOfPowers)
