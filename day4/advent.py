@@ -5,21 +5,25 @@ inputFile.close()
 
 
 #MAIN SECTION
-totalPoints = 0
+numCards = []
+for i in range(len(inputTxt)):
+    numCards.append(1)
 
-for line in inputTxt:
+
+for i in range(len(inputTxt)):
+    nextCard = i + 1
+    line = inputTxt[i]
     cardPoints = 0
     data = line.split(':')[1].split('|')
     winners = data[0].split()
     ours = data[1].split()
 
-    for i in range(len(winners)):
-        winners[i] = int(winners[i])
-    for i in range(len(ours)):
-        ours[i] = int(ours[i])
-        if ours[i] in winners:
-            cardPoints = (1 if cardPoints == 0 else cardPoints * 2)
+    for j in range(len(winners)):
+        winners[j] = int(winners[j])
+    for j in range(len(ours)):
+        ours[j] = int(ours[j])
+        if ours[j] in winners:
+            numCards[nextCard] += numCards[i]
+            nextCard += 1
 
-    totalPoints += cardPoints
-
-print(totalPoints)
+print(sum(numCards))
