@@ -1,10 +1,14 @@
 #INPUT HANDLING
-inputFile = open('day05/input.txt')
+inputFile = open('day05/exampleInput.txt')
 inputSections = inputFile.read().split(':')[1:]
 
-seeds = inputSections[0].split()[:-2]
-for i in range(len(seeds)):
-    seeds[i] = int(seeds[i])
+parsedSeeds = inputSections[0].split()[:-2]
+seeds = []
+for i in range(0, len(parsedSeeds), 2):
+    rangeStart = int(parsedSeeds[i])
+    rangeLen = int(parsedSeeds[i + 1])
+    for j in range(rangeLen):
+        seeds.append(rangeStart + j)
 
 mapRangeArrays = []
 maps = []
@@ -38,28 +42,4 @@ for seed in seeds:
     results.append(seed)
 
 print(sorted(results))
-exit()
-
-for i in range(len(mapRangeArrays)):
-    mapRangeArray = mapRangeArrays[i]
-    maps.append({})
-    for mapRange in mapRangeArray:
-        numberForm = mapRange.split()
-        mapStart = int(numberForm[1])
-        mapEnd = int(numberForm[0])
-        mapRange = int(numberForm[2])
-        for j in range(mapRange):
-            print(f'we are on {i}, {j}')
-            maps[i][mapStart + j] = mapEnd + j
-
-#MAIN SECTION
-for seed in seeds:
-    for map in maps:
-        seed = map[seed] if seed in map.keys() else seed
-    
-    results.append(seed)
-
-results.sort()
-print(results)
-        
     
