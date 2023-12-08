@@ -21,6 +21,24 @@ for i in range(1, len(inputSections)):
 
     #break
 
+maps = ['SOIL','FERT','WATER','LIGHT','TEMPERATURE','HUMID','LOC']
+for seed in seeds:
+    for mapRangeArray in mapRangeArrays:
+        for mapRange in mapRangeArray:
+            mapRange = mapRange.split()
+            rangeStart = int(mapRange[1])
+            rangeLength = int(mapRange[2])
+
+            if(seed >= rangeStart and seed < rangeStart + rangeLength):
+                seed = (seed - rangeStart) + int(mapRange[0])
+                break
+
+        #print(f'{maps[count]} : {seed}')
+
+    results.append(seed)
+
+print(sorted(results))
+exit()
 
 for i in range(len(mapRangeArrays)):
     mapRangeArray = mapRangeArrays[i]
