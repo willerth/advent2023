@@ -28,16 +28,18 @@ for line in inputTxt:
 
         i+=1
     
-    nextInSeq = -1
-    for j in range(len(data) - 1, 0, -1):
-        lastIdx = len(data[j]) - 1
-        lastDiff = data[j][lastIdx]
-        nextInSeq = data[j - 1][lastIdx] + lastDiff
-        data[j - 1].append(nextInSeq)
-        #print(lastIdx)
+    newLeftMost = 0
+    print(data)
+    for j in range(len(data) - 1, -1, -1):
+        lastDiff = data[j][0]
+        data[j - 1].insert(0, data[j - 1][0] - lastDiff)
+        #nextInSeq = data[j - 1][lastIdx] + lastDiff
+        #data[j - 1].append(nextInSeq)
+        
+    print(data)
     
-
-    result += nextInSeq
+    print()
+    result += data[0][0]
 
 
 
