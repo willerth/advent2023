@@ -34,20 +34,37 @@ for i in range(len(hands)):
     hand.append(bids[i])
 
     cardCounts = {}
-    
+
+
+    numberOfJacks = 0
     for card in hand:
-        cardCounts[card] = 1 if card not in cardCounts.keys() else cardCounts[card] + 1
-
-
-    categories[determineRank(cardCounts)].append(hand)
+        if(card == 0): numberOfJacks += 1
+        else:
+            cardCounts[card] = 1 if card not in cardCounts.keys() else cardCounts[card] + 1
+    
+    maxOccurences = 0
+    mostCommonCardInHand = -1
+    for card in cardCounts.keys():
+        if(cardCounts[card]) > maxOccurences:
+            maxOccurences = cardCounts[card]
+            mostCommonCardInHand = card
+    
+    cardCounts[mostCommonCardInHand] = cardCounts[mostCommonCardInHand] + numberOfJacks
+    print(hand)
+    print(cardCounts)
+    #EDGE CASE - ALL JACKS IN DECK
+    if(numberOfJacks == 5):
+        categories['FIVE_OF_A_KIND'].append(hand)
+    else:
+        categories[determineRank(cardCounts)].append(hand)
 
 sum = 0
 rank = 1
 for category in categories.keys():
+    print(category)
     for hand in sorted(categories[category]):
-        #print(hand)
+        print(hand)
         sum += rank * int(hand[BID_INDEX])
         rank += 1
-        #print(sum)
 
 print(sum)
