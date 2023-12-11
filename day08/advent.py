@@ -30,12 +30,14 @@ pathLengths = []
 for location in currentLocations:
     directionsIndex = 0
     pathLength = 0
+    print(location)
     while(location[-1] != 'Z'):
         pathLength += 1
         direction = directionsArray[directionsIndex]
         directionsIndex = (directionsIndex + 1) % len(directionsArray)
         location = map[location][direction]
 
+    print(location)
     pathLengths.append(pathLength)
 
 print(pathLengths)
