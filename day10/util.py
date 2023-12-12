@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 
 #SETUP
-#inputFile = open('day10/example.txt')
-inputFile = open('day10/input.txt')
+inputFile = open('day10/example.txt')
+#inputFile = open('day10/input.txt')
 inputText = inputFile.readlines()
 inputFile.close()
 

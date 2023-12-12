@@ -30,23 +30,21 @@ while(not q.empty()):
     foundChar = pureMap[x][y]
     if(foundChar not in directions.keys() or continuedDirection not in directions[foundChar].keys()): continue
     q.put([continuedDirection, [x,y], foundChar])
-    pureMap[originX][originY] = '.'
+    pureMap[originX][originY] = 'X'
     numberedMap[x][y] = numberedMap[originX][originY] + 1
     if(maxDist < numberedMap[x][y]) : maxDist = numberedMap[x][y]
 
 print(maxDist)
 
-exit()
-
-for row in numberedMap:
-    for char in row:
-        print(char, end='')
-    print()
-
-exit()
+outFile = open('day10/out.txt', 'w')
 
 for row in pureMap:
     for char in row:
-        print(char, end='')
-    print()
+        outFile.write(str(char))
+    outFile.write('\n')
 
+
+outFile.close()
+
+
+print(pureMap)
