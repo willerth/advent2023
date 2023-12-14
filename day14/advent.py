@@ -1,7 +1,9 @@
 from util import *
 
-#inputFile = open('day14/example.txt')
-inputFile = open('day14/input.txt')
+NUM_CYCLES = 1000000000
+
+inputFile = open('day14/example.txt')
+#inputFile = open('day14/input.txt')
 inputTxt = inputFile.readlines()
 inputFile.close()
 
@@ -13,5 +15,14 @@ for line in inputTxt:
         row.append(char)
     platform.append(row)
 
-shiftPlatformNorth(platform)
+for i in range(NUM_CYCLES):
+    spinCycle(platform)
+
 print(calculateLoad(platform))
+
+
+#exit()
+#Just seeing what the platform looks like
+
+for row in platform:
+    print(''.join(row))
