@@ -12,8 +12,8 @@ for block in inputBlocks:
     block = block.splitlines()
     transposedBlock = transposed(block)
 
-    horizontalReflectionLine = findHorizontalReflectionLine(block)
-    verticalReflectionLine = findHorizontalReflectionLine(transposedBlock)
+    horizontalReflectionLine = findHorizontalReflectionLine(block, 1)
+    verticalReflectionLine = findHorizontalReflectionLine(transposedBlock, 1)
 
     if(horizontalReflectionLine == verticalReflectionLine):
         print(counter)
